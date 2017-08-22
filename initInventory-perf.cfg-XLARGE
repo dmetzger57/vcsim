@@ -1,0 +1,41 @@
+<config>
+  <!-- If 'dv-portgroups' is nonzero, each datacenter will have one DVS with that many
+  portgroups. Each host in that datacenter will be attached to one portgroup in a sort
+  of round-robin fashion, and each VM on that host will be attached to that portgroup.
+  -->
+
+  <inventory> <!-- Optional, by default, all are zeros -->
+    <dc>1</dc> <!-- Number of datacenters -->
+    <host-per-dc>0</host-per-dc> <!-- Number of standalone hosts per datacenter -->
+    <vm-per-host>0</vm-per-host> <!-- Number of VMs per standalone host -->
+    <poweron-vm-per-host>0</poweron-vm-per-host> <!-- Number of powered on VMs per standalone hosts -->
+    <cluster-per-dc>20</cluster-per-dc> <!-- Number of clusters per datacenter -->
+    <host-per-cluster>10</host-per-cluster> <!-- Number of hosts per cluster -->
+    <rp-per-cluster>10</rp-per-cluster> <!-- Number of resource pools per cluster -->
+    <vm-per-rp>50</vm-per-rp> <!-- Number of VMs per resource pool -->
+    <poweron-vm-per-rp>25</poweron-vm-per-rp> <!-- Number of powered on VMs per resource pool -->
+    <dv-portgroups>5</dv-portgroups> <!-- Number of DVS portgroups per datacenter -->
+  </inventory>
+
+  <vmSetting> <!-- Optional -->
+    <vcpu>1</vcpu> <!-- Number of VCPUs per VM -->
+    <mem>1024</mem> <!-- VM memory size in MB -->
+    <guestId>winNetStandardGuest</guestId>
+  </vmSetting>
+
+  <!-- The prefix of the object names.
+       A "prefix" could be used to distinguish the objects in different
+       VC simulators. For example, you could set the prefix to "VC0" and "VC1"
+       in two of your VC simulators. So, the object names will not overlap. -->
+  <prefix>VC0</prefix> <!-- Optional, default, "" -->
+
+  <!-- Number of worker threads for creating the initial inventory.
+       This is used to speed up the initial inventory creation. -->
+  <worker-threads>1</worker-threads> <!-- Optional, befault, 1 -->
+
+  <!-- Should the initial inventory be created synchronously?
+       If it is true, the vpxd service won't start until all the initial
+       inventory objects are created. Otherwise, the vpxd service will
+       start and the initial inventory is created asynchronously. -->
+  <synchronous>true</synchronous> <!-- Optional, default, true -->
+</config>
